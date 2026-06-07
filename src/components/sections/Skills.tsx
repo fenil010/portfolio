@@ -1,6 +1,12 @@
-"use client";
-
-import styles from "./Skills.module.css";
+import type { CSSProperties } from "react";
+import {
+  glassPanel,
+  sectionContainer,
+  sectionEyebrow,
+  sectionHeader,
+  sectionTitle,
+  sectionUnderline,
+} from "@/lib/styles";
 
 const skillCategories = [
   {
@@ -18,7 +24,7 @@ const skillCategories = [
       { name: "React", color: "#61dafb" },
       { name: "Next.js", color: "#000000" },
       { name: "Tailwind CSS", color: "#06b6d4" },
-      { name: "CSS Modules", color: "#333333" },
+      { name: "Framer Motion", color: "#333333" },
     ],
   },
   {
@@ -85,7 +91,7 @@ function getSkillIcon(name: string) {
           <path d="M6 13c-1.2 0-2.4.6-3.3 1.6-1.7 1.8-1.7 5 0 6.8.9 1 2.1 1.6 3.3 1.6s2.4-.6 3.3-1.6c1.7-1.8 1.7-5 0-6.8C8.4 13.6 7.2 13 6 13z"/>
         </svg>
       );
-    case "CSS Modules":
+    case "Framer Motion":
       return (
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -133,34 +139,34 @@ function getSkillIcon(name: string) {
 
 export default function Skills() {
   return (
-    <section className={styles.skills} id="skills">
-      {/* Visual background details */}
-      <div className={styles.gridBgLight} />
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f5f5f7_0%,#e8e8ed_100%)] py-16 sm:py-20 lg:py-[100px]" id="skills">
+      <div className="light-dot-grid pointer-events-none absolute inset-0 opacity-5" />
 
-      <div className={styles.container}>
-        {/* Section Header */}
-        <div className={styles.sectionHeader}>
-          <span className={styles.tagline}>My Arsenal</span>
-          <h2 className={styles.title}>Skills & Technologies</h2>
-          <div className={styles.underline} />
+      <div className={`${sectionContainer} relative z-1`}>
+        <div className={sectionHeader}>
+          <span className={sectionEyebrow}>My Arsenal</span>
+          <h2 className={sectionTitle}>Skills & Technologies</h2>
+          <div className={sectionUnderline} />
         </div>
 
-        {/* Categories Grid */}
-        <div className={styles.categoriesGrid}>
+        <div className="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-[30px]">
           {skillCategories.map((category) => (
-            <div key={category.title} className={styles.categoryCard}>
-              <h3 className={styles.categoryTitle}>{category.title}</h3>
-              <div className={styles.skillsList}>
+            <div
+              key={category.title}
+              className={`${glassPanel} rounded-2xl p-5 hover:-translate-y-1 hover:border-white/80 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)] sm:p-6 lg:p-[30px]`}
+            >
+              <h3 className="mb-6 border-b border-black/4 pb-3 text-[17px] font-bold text-(--text-primary)">{category.title}</h3>
+              <div className="flex flex-col gap-3">
                 {category.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className={styles.skillItem}
-                    style={{ "--skill-color": skill.color } as React.CSSProperties}
+                    className="skill-item flex items-center gap-3.5 rounded-[10px] border border-black/3 bg-white/40 px-4 py-3 transition-all duration-300 hover:translate-x-1 hover:border-black/8 hover:bg-white hover:shadow-[0_4px_15px_rgba(0,0,0,0.04)]"
+                    style={{ "--skill-color": skill.color } as CSSProperties}
                   >
-                    <div className={styles.iconWrapper}>
+                    <div className="skill-icon flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-lg bg-white text-(--text-secondary) shadow-(--shadow-sm) transition-all duration-300">
                       {getSkillIcon(skill.name)}
                     </div>
-                    <span className={styles.skillName}>{skill.name}</span>
+                    <span className="text-[14.5px] font-semibold text-(--text-primary)">{skill.name}</span>
                   </div>
                 ))}
               </div>

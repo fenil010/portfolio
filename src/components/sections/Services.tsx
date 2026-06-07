@@ -1,6 +1,11 @@
-"use client";
-
-import styles from "./Services.module.css";
+import {
+  glassPanel,
+  sectionContainer,
+  sectionEyebrow,
+  sectionHeader,
+  sectionTitle,
+  sectionUnderline,
+} from "@/lib/styles";
 
 const services = [
   {
@@ -56,22 +61,23 @@ const services = [
 
 export default function Services() {
   return (
-    <section className={styles.services} id="services">
-      <div className={styles.container}>
-        {/* Section Header */}
-        <div className={styles.sectionHeader}>
-          <span className={styles.tagline}>What I Offer</span>
-          <h2 className={styles.title}>Services</h2>
-          <div className={styles.underline} />
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f5f5f7_0%,#e8e8ed_100%)] py-16 sm:py-20 lg:py-[100px]" id="services">
+      <div className={sectionContainer}>
+        <div className={sectionHeader}>
+          <span className={sectionEyebrow}>What I Offer</span>
+          <h2 className={sectionTitle}>Services</h2>
+          <div className={sectionUnderline} />
         </div>
 
-        {/* Services Grid */}
-        <div className={styles.grid}>
-          {services.map((service, index) => (
-            <div key={index} className={styles.card}>
-              <div className={styles.icon}>{service.icon}</div>
-              <h3 className={styles.serviceTitle}>{service.title}</h3>
-              <p className={styles.description}>{service.description}</p>
+        <div className="grid gap-5 sm:gap-6 md:grid-cols-2 lg:gap-[30px]">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className={`${glassPanel} group flex flex-col gap-4 rounded-2xl p-5 hover:-translate-y-1.5 hover:border-white/80 hover:bg-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] sm:p-6 md:p-8 lg:p-10`}
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-(--accent-primary) shadow-(--shadow-sm) transition-all duration-300 group-hover:scale-105 group-hover:bg-(--accent-primary) group-hover:text-white">{service.icon}</div>
+              <h3 className="text-xl font-bold text-(--text-primary)">{service.title}</h3>
+              <p className="text-[14.5px] leading-[1.7] text-(--text-secondary)">{service.description}</p>
             </div>
           ))}
         </div>
